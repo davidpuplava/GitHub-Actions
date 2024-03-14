@@ -9,6 +9,8 @@ jobs:
   run:
     name: Tag Version Automation
     if: github.event.pusher.name != 'LombiqBot'
+    permissions:
+      contents: 'write'
     uses: Lombiq/GitHub-Actions/.github/workflows/tag-version.yml@issue/OSOE-735
     with:
       additional-pattern-include-list: '@("https://raw.githubusercontent.com/Lombiq/GitHub-Actions/(?<ref>[aA-zZ,0-9,-,\.,/,_]*)/.github")'
