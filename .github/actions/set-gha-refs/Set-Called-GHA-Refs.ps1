@@ -12,7 +12,7 @@ if ($CalledRepoBaseIncludeList.Count -eq 0)
 }
 else
 {
-    $CalledRepoBaseIncludeList = $CalledRepoBaseIncludeList.ForEach({ 'uses:\s*' + $PSItem + '.*@(?<ref>[aA-zZ,0-9,-,\.,/,_]*)' })
+    $CalledRepoBaseIncludeList = $CalledRepoBaseIncludeList.ForEach({ 'uses:\s*' + $PSItem + '.*@(?<ref>[\w\./-]*)' })
 
     $matchedRefs = Get-ChildItem -Path $PathIncludeList -Include $FileIncludeList -Force -Recurse |
         Select-String -Pattern $CalledRepoBaseIncludeList
@@ -34,7 +34,7 @@ else
                 Write-Output "$oldline => $newline"
 
                 $filename = $matched.RelativePath($pwd)
-                $linenumber = $mismatch.LineNumber
+                $linenumber = $matched.LineNumber
                 $title = "GHA Ref pinned to '$ExpectedRef'"
 
                 (Get-Content $filename).Replace($oldline, $newline) | Set-Content $filename
