@@ -38,7 +38,7 @@ on:
         default: '@("${{ github.repository }}")'
         description: >
           PowerShell string array of repository base URLs to include when evaluating called GHA Workflows and Actions,
-          e.g '@(  )' or '@("Lombiq/GitHub-Actions",
+          e.g '@("Lombiq/GitHub-Actions")' or '@("Lombiq/GitHub-Actions",
           "Lombiq/Open-Source-Orchard-Core-Extensions")'. The parameter must be a PowerShell string array.
         type: string
       additional-pattern-include-list:
@@ -82,7 +82,7 @@ jobs:
           Set-GitHubOutput -Key 'tagname' -Value $tagname
 
       - name: Set Ref for GitHub Actions and Workflows
-        uses: Lombiq/GitHub-Actions/.github/actions/set-gha-refs@dev-735
+        uses: Lombiq/GitHub-Actions/.github/actions/set-gha-refs@issue/OSOE-735
         with:
           path-include-list: ${{ inputs.path-include-list }}
           file-include-list: ${{ inputs.file-include-list }}
@@ -101,7 +101,7 @@ jobs:
         run: git push --tags --force
 
       - name: Create Release
-        uses: Lombiq/GitHub-Actions/.github/actions/release-action@dev-735
+        uses: Lombiq/GitHub-Actions/.github/actions/release-action@issue/OSOE-735
         # This is to prevent creating releases when pushing tags for issue-specific pre-releases like
         # v4.3.1-alpha.osoe-86.
         if: "!contains(steps.determine-tag.outputs.tagname, '-')"
