@@ -11,7 +11,7 @@ jobs:
     if: github.event.pusher.name != 'github-actions[bot]'
     permissions:
       contents: 'write'
-    uses: davidpuplava/GitHub-Actions/.github/workflows/tag-version.yml@release/v0.1
+    uses: davidpuplava/GitHub-Actions/.github/workflows/tag-version.yml@v0.1
     with:
       called-repo-base-include-list: '@("${{ github.repository }}","Lombiq/GitHub-Actions")'
       additional-pattern-include-list: '@("https://raw.githubusercontent.com/Lombiq/GitHub-Actions/(?<ref>[\w\./-]*)/.github")'
