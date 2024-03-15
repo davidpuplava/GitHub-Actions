@@ -8,7 +8,7 @@ on:
 jobs:
   run:
     name: Tag Version Automation
-    if: github.event.pusher.name != 'LombiqBot'
+    if: github.event.pusher.name != 'github-actions[bot]'
     permissions:
       contents: 'write'
     uses: davidpuplava/GitHub-Actions/.github/workflows/tag-version.yml@release/v0.1
